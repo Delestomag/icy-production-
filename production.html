@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Icy Production</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+            touch-action: none;
+            overflow: hidden;
+            cursor: none !important;
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 40px;
+            font-size: 2.5em;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+            pointer-events: none;
+        }
+        
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 100%;
+            max-width: 300px;
+            pointer-events: none;
+        }
+        
+        .btn {
+            padding: 15px 25px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #333;
+            cursor: none;
+            text-decoration: none;
+            text-align: center;
+            background: linear-gradient(135deg, #a8e6ff 0%, #ffffff 100%);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            pointer-events: auto;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+        
+        .btn:active {
+            transform: translateY(1px);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            background: linear-gradient(135deg, #90d6f4 0%, #f0f0f0 100%);
+        }
+        
+        .custom-cursor {
+            position: fixed;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: #C71585; /* Вишневый цвет */
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            mix-blend-mode: difference;
+            transition: transform 0.1s ease;
+        }
+        
+        .cursor-click {
+            animation: clickEffect 0.3s ease;
+        }
+        
+        @keyframes clickEffect {
+            0% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -50%) scale(0.8); }
+            100% { transform: translate(-50%, -50%) scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <div class="custom-cursor"></div>
+    
+    <h1>Icy Production</h1>
+    
+    <div class="button-container">
+        <a href="https://t.me/icy_botnet_robot" class="btn">Бот</a>
+        <a href="https://telegra.ph/Rulles-Icy-Botnet-03-23" class="btn">Правила</a>
+        <a href="https://t.me/delesto" class="btn">Овнер</a>
+    </div>
+
+    <script>
+        const cursor = document.querySelector('.custom-cursor');
+        const links = document.querySelectorAll('a');
+        
+        // Движение курсора
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+        
+        // Для тач-устройств
+        document.addEventListener('touchmove', (e) => {
+            e.preventDefault();
+            cursor.style.left = e.touches[0].clientX + 'px';
+            cursor.style.top = e.touches[0].clientY + 'px';
+        }, { passive: false });
+        
+        // Эффект клика
+        document.addEventListener('click', () => {
+            cursor.classList.add('cursor-click');
+            setTimeout(() => {
+                cursor.classList.remove('cursor-click');
+            }, 300);
+        });
+        
+        // Для тач-устройств
+        document.addEventListener('touchend', () => {
+            cursor.classList.add('cursor-click');
+            setTimeout(() => {
+                cursor.classList.remove('cursor-click');
+            }, 300);
+        });
+        
+        // Эффект при наведении на ссылки
+        links.forEach(link => {
+            link.addEventListener('mouseover', () => {
+                cursor.style.transform = 'translate(-50%, -50%) scale(1.5)';
+                cursor.style.backgroundColor = '#FF1493'; // Более яркий вишневый
+            });
+            
+            link.addEventListener('mouseout', () => {
+                cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+                cursor.style.backgroundColor = '#C71585';
+            });
+        });
+    </script>
+</body>
+</html>
